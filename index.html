@@ -3,22 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Repaso · 3.º DS</title>
-    <link rel="stylesheet" href="css.css">
+    <title>Portal Repaso · 3.º DS «B» HUB</title>
+    <style>
+        :root {
+            --bg: #070a15;
+            --panel: #16122b;           /* Fondo morado elegante para tarjetas */
+            --panel2: #1e1738;          /* Fondo morado ligeramente más claro */
+            --line: #3b2a5c;           /* Bordes en tono violeta */
+            --line2: #523980;          /* Bordes activos/destacados */
+            --tx: #f7ecfd;              /* Texto principal con matiz suave */
+            --mut: #bfa3d8;             /* Texto secundario morado tenue */
+            --cy: #e066ff;              /* Púrpura brillante/Rosa neón */
+            --mg: #f046d2;              /* Rosado magenta */
+            --am: #ff85d5;              /* Rosado pastel para destacados */
+            --gr: #d980fa;              /* Violeta claro */
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--tx); line-height: 1.6; padding-bottom: 50px; }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { background: rgba(22, 18, 43, 0.92); border-bottom: 1px solid var(--line); padding: 35px 0; text-align: center; }
+        .marca { font-size: 13px; color: var(--cy); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-size: clamp(24px, 4vw, 36px); margin-top: 6px; color: var(--tx); }
+        .lead { color: var(--mut); margin-top: 8px; font-size: 16px; }
+        
+        .buscador-sec { margin: 30px 0 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        #buscador { width: 100%; max-width: 600px; padding: 14px 20px; background: var(--panel2); border: 1px solid var(--line2); border-radius: 10px; color: var(--tx); font-size: 16px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+        #buscador:focus { border-color: var(--cy); box-shadow: 0 0 12px rgba(224, 102, 255, 0.3); }
+        
+        .filtros { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 25px; }
+        .btn-filtro { font-size: 13px; background: var(--panel2); border: 1px solid var(--line); color: var(--mut); padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
+        .btn-filtro:hover, .btn-filtro.activo { color: #ffffff; background: var(--cy); border-color: var(--cy); font-weight: bold; }
+        
+        h2 { font-size: 22px; margin-bottom: 20px; color: var(--cy); border-left: 4px solid var(--cy); padding-left: 12px; }
+        .grid-modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 22px; }
+        
+        .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 12px; position: relative; transition: transform 0.2s, border-color 0.2s; }
+        .card:hover { border-color: var(--cy); transform: translateY(-3px); }
+        .card h3 { font-size: 19px; color: var(--tx); padding-right: 30px; }
+        .badge-doc { font-size: 12.5px; color: var(--cy); font-weight: bold; background: rgba(224, 102, 255, 0.12); border: 1px solid rgba(224, 102, 255, 0.3); border-radius: 6px; padding: 2px 8px; display: inline-block; width: fit-content; }
+        .card p { font-size: 14.5px; color: var(--mut); }
+        
+        .sec-investigacion { background: var(--panel2); border: 1px solid var(--line2); border-radius: 10px; padding: 14px; margin-top: 8px; }
+        .sec-investigacion h4 { font-size: 14px; color: var(--am); margin-bottom: 6px; }
+        .sec-investigacion ul { padding-left: 18px; font-size: 13.5px; color: var(--mut); }
+        .sec-investigacion li { margin-bottom: 4px; }
+        
+        .herr-box { font-size: 13px; color: var(--tx); background: rgba(7,10,21,0.6); border-radius: 8px; padding: 8px 12px; border: 1px solid var(--line); }
+        .herr-box b { color: var(--gr); }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 10px; }
+        .tag { font-size: 12px; background: var(--panel2); border: 1px solid var(--line); color: var(--cy); padding: 3px 10px; border-radius: 6px; }
+
+        footer { margin-top: 60px; text-align: center; color: var(--mut); font-size: 14px; border-top: 1px solid var(--line); padding-top: 25px; }
+        footer b { color: var(--tx); }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Portal de Repaso 3.º DS</h1>
-        <p>Bienvenidos al HUB de conocimientos y módulos del año.</p>
+        <div class="wrap">
+            <span class="marca">INDEL · 3.º Desarrollo de Software «B»</span>
+            <h1>Portal HUB de Repaso Anual</h1>
+            <p class="lead">Resumen integral de módulos, proyectos, investigación de soporte y herramientas del año.</p>
+        </div>
     </header>
-    <main>
+
+    <main class="wrap">
+        <section class="buscador-sec">
+            <input type="text" id="buscador" placeholder="Busca un módulo, tema (ej: ITIL, SLA, Python, Git) o herramienta...">
+            <div class="filtros">
+                <button class="btn-filtro activo" data-filtro="todos">Todos</button>
+                <button class="btn-filtro" data-filtro="Javier Mineros">Prof. Javier Mineros</button>
+                <button class="btn-filtro" data-filtro="Arcides Canales">Prof. Arcides Canales</button>
+                <button class="btn-filtro" data-filtro="Investigacion">Investigación M3.2</button>
+            </div>
+        </section>
+
         <section>
-            <h2>Módulos del Repaso</h2>
-            <div id="contenedor-modulos">
-                <!-- Aquí se cargarán los módulos dinámicamente -->
+            <h2>Módulos del Año</h2>
+            <div id="contenedor-modulos" class="grid-modulos">
+                <!-- Carga dinámica -->
             </div>
         </section>
     </main>
-    <script src="script.js"></script>
+
+    <footer>
+        <div class="wrap">
+            <p><b>Desarrollado por:</b> Axel Pineda · Instituto Nacional Cantón Lourdes (INDEL)</p>
+            <p style="font-size: 12px; margin-top: 4px; color: var(--mut);">3.º Bachillerato Técnico Vocacional en Desarrollo de Software «B»</p>
+        </div>
+    </footer>
+
+    <script>
+    const modulosData = [
+    {
+        id: "3.0",
+        titulo: "Módulo 3.0 · Orientación y Equipos",
+        docente: "Profesor Javier Mineros",
+        desc: "Organización inicial del tercer año, conformación de equipos de trabajo técnico, portafolios digitales y distribución de accesos QR para el seguimiento académico.",
+        investigacion: [],
+        herramientas: ["Google Classroom", "Drive", "Generadores QR"],
+        tags: ["#Organización", "#Equipos", "#Portafolio"]
+    },
+    {
+        id: "3.2",
+        titulo: "Módulo 3.2 · Mantenimiento y Operación de Sistemas",
+        docente: "Profesor Javier Mineros",
+        desc: "Investigación profunda sobre el ciclo de vida del software (SDLC), metodologías de soporte técnico, normativas ISO, ITIL 4, SLAs y planes de contingencia (DRP/BCP).",
+        investigacion: [
+            "Ciclo de vida (SDLC) y Mantenimiento (Correctivo, Adaptativo, Perfectivo, Preventivo).",
+            "Niveles de Soporte Técnico (Tier 1 a Tier 4).",
+            "Versionamiento Semántico (SemVer: MAJOR.MINOR.PATCH) y Git.",
+            "Normativas ISO (27001, 20000, 25010) e ITIL 4 (SVS y Cadena de Valor).",
+            "SLA (MTTR, MTBF), Pruebas de Software y Seguridad (Tríada CID).",
+            "Planes Contingenciales (DRP/BCP, RTO, RPO) y Servidores de Pruebas (Staging)."
+        ],
+        herramientas: ["Git", "GitHub", "Visual Studio Code", "Docker", "SQL Server", "Excel", "Jira / Helpdesk"],
+        tags: ["#Investigacion", "#SLA", "#ITIL 4", "#SemVer", "#ISO 27001", "#Mantenimiento"]
+    },
+    {
+        id: "3.3",
+        titulo: "Módulo 3.3 · Administración de Bases de Datos",
+        docente: "Profesor Javier Mineros",
+        desc: "Gestión de bases de datos relacionales, ejecución de consultas SQL complejas, creación de dashboards interactivos en Excel y análisis visual de datos con Power BI.",
+        investigacion: [],
+        herramientas: ["SQL Server", "Microsoft Excel", "Power BI", "Visual Studio Code"],
+        tags: ["#Power BI", "#Excel", "#SQL Server", "#Dashboards"]
+    },
+    {
+        id: "3.4",
+        titulo: "Módulo 3.4 · Documentación y Creación de Apps",
+        docente: "Profesor Arcides Canales",
+        desc: "Desarrollo de software en Python, interfaces gráficas con Avalonia UI y Flet, integración con Odoo ERP, arquitectura por fases y ejecución de prácticas avanzadas en .NET MAUI.",
+        investigacion: [
+            "Práctica 11 (Base de datos CRUD-IA): DataBinding y DemoIntroAsync (Individual).",
+            "Aplicación TodoSuCarnet con CRUD en SQLite.",
+            "Uso de IA: Servidor MPC con Excalidraw y Spec-driven development con OpenSpec.",
+            "Práctica 10 y guías de desarrollo con .NET MAUI y SQLite."
+        ],
+        herramientas: ["Python", "Avalonia UI", "Flet", "Odoo ERP", "Visual Studio Code", "IA de Visual Studio Code", ".NET MAUI", "SQLite"],
+        tags: ["#Python", "#Odoo", "#CRUD-IA", "#Práctica 11", "#.NET MAUI", "#SQLite"]
+    },
+    {
+        id: "3.8",
+        titulo: "Módulo 3.8 · Proyecto Innovador de Desarrollo",
+        docente: "Profesor Arcides Canales",
+        desc: "Ciclo completo de ingeniería de software: manuales de usuario/sistema, metodología SCRUM, proyecto UNA ESTRELLA en .NET MAUI, exposiciones y tiendas virtuales.",
+        investigacion: [
+            "Puesta en marcha de PrestaShop: temas, categorías, 5 productos por categoría, 4 Packs, cupones de descuento, descargas virtuales y marcas.",
+            "MatchGame (Investigación complementaria con figuras aleatorias, timer y reinicio).",
+            "Análisis de resultados y SCRUM (Equipos de 5): 6 aplicaciones en .NET MAUI (pares, cuenta regresiva, tablas de multiplicar, sueldos, tarifas de 'La langosta ahumada' y conversor de moneda mexicana)."
+        ],
+        herramientas: ["Visual Studio Code", "IA de VS Code", "Git", "GitHub", "ASP.NET WebForms", ".NET MAUI", "PrestaShop", "XAMPP"],
+        tags: ["#Proyecto Innovador", "#PrestaShop", "#SCRUM", "#.NET MAUI", "#MatchGame", "#GitHub"]
+    },
+    {
+        id: "3.9",
+        titulo: "Módulo 3.9 · Integración y Feria de Portales",
+        docente: "Profesor Arcides Canales y Javier Mineros",
+        desc: "Módulo integrador enfocado en la consolidación del Portal HUB de Repaso Anual, empaquetado de versiones (v0.2 a v1.0), despliegue en GitHub Pages y defensa individual.",
+        investigacion: [
+            "Estructuración de componentes web reutilizables (HTML5, CSS Grid/Flexbox y JavaScript nativo sin frameworks).",
+            "Control estricto de versiones en repositorio público con convenciones de commits y etiquetado.",
+            "Verificación de criterios de calidad: diseño responsivo para dispositivos móviles, accesibilidad y rendimiento óptimo."
+        ],
+        herramientas: ["Git", "GitHub Pages", "Visual Studio Code", "Markdown", "Live Server"],
+        tags: ["#FeriaDePortales", "#GitHubPages", "#EvaluaciónFinal", "#RepasoIntegral"]
+    }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+    const contenedor = document.getElementById("contenedor-modulos");
+    const buscador = document.getElementById("buscador");
+
+    // Crear canvas para el fondo animado tecnológico
+    const canvas = document.createElement('canvas');
+    canvas.id = 'bg-canvas';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.zIndex = '-1';
+    canvas.style.pointerEvents = 'none';
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const particles = Array.from({ length: 45 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        radius: Math.random() * 1.8 + 0.8,
+        alpha: Math.random() * 0.5 + 0.2
+    }));
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = '#070a15';
+        ctx.fillRect(0, 0, width, height);
+
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = width;
+            if (p.x > width) p.x = 0;
+            if (p.y < 0) p.y = height;
+            if (p.y > height) p.y = 0;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(224, 102, 255, ${p.alpha})`;
+            ctx.fill();
+        });
+
+        // Líneas de conexión sutiles
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(224, 102, 255, ${0.12 * (1 - dist / 120)})`;
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    function normalizar(texto) {
+        return texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+    }
+
+    function renderizar(lista) {
+        if (!contenedor) return;
+        if (lista.length === 0) {
+            contenedor.innerHTML = `<p style="color:var(--mut); grid-column: 1/-1; text-align:center; padding: 20px;">No se encontraron resultados.</p>`;
+            return;
+        }
+        contenedor.innerHTML = lista.map(m => `
+            <article class="card" style="background:rgba(22, 18, 43, 0.88); backdrop-filter:blur(8px); border:1px solid var(--line); border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+                <h3 style="color:var(--tx); font-size:18px;">${m.titulo}</h3>
+                <span class="badge-doc" style="color: var(--cy); font-size: 13px; font-weight: bold;">👨‍🏫 ${m.docente}</span>
+                <p style="color:var(--mut); font-size:14.5px; line-height:1.5;">${m.desc}</p>
+                
+                ${m.investigacion.length > 0 ? `
+                    <div class="sec-investigacion" style="background:rgba(30, 23, 56, 0.9); padding:12px; border-radius:8px; border:1px solid var(--line);">
+                        <h4 style="font-size:13px; color:var(--am); margin-bottom:6px;">📋 Prácticas y Contenido Detallado:</h4>
+                        <ul style="font-size:12.5px; color:var(--mut); padding-left:18px; display:flex; flex-direction:column; gap:4px;">
+                            ${m.investigacion.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+
+                <p style="font-size: 13px; color: #fff;"><b>Herramientas:</b> ${m.herramientas.join(', ')}</p>
+                
+                <div class="tags" style="display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;">
+                    ${m.tags.map(t => `<span class="tag" style="font-size:12px; background:var(--panel2); border:1px solid var(--line); color:var(--cy); padding:3px 10px; border-radius:6px;">${t}</span>`).join('')}
+                </div>
+            </article>
+        `).join('');
+    }
+
+    renderizar(modulosData);
+
+    if (buscador) {
+        buscador.addEventListener("input", (e) => {
+            const texto = normalizar(e.target.value.trim());
+            const filtrados = modulosData.filter(m => 
+                normalizar(m.titulo).includes(texto) || 
+                normalizar(m.desc).includes(texto) ||
+                normalizar(m.docente).includes(texto) ||
+                m.investigacion.some(inv => normalizar(inv).includes(texto)) ||
+                m.herramientas.some(h => normalizar(h).includes(texto)) ||
+                m.tags.some(t => normalizar(t).includes(texto))
+            );
+            renderizar(filtrados);
+        });
+    }
+});
+    </script>
 </body>
 </html>
