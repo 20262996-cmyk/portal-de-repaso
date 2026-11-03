@@ -28,17 +28,33 @@
         
         .buscador-sec { margin: 30px 0 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
         #buscador { width: 100%; max-width: 600px; padding: 14px 20px; background: var(--panel2); border: 1px solid var(--line2); border-radius: 10px; color: var(--tx); font-size: 16px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-        #buscador:focus { border-color: var(--cy); box-shadow: 0 0 12px rgba(224, 102, 255, 0.3); }
+        #buscador:focus { border-color: var(--cy); box-shadow: 0 0 16px rgba(224, 102, 255, 0.4); }
         
         .filtros { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 25px; }
         .btn-filtro { font-size: 13px; background: var(--panel2); border: 1px solid var(--line); color: var(--mut); padding: 6px 14px; border-radius: 999px; cursor: pointer; transition: all 0.2s; }
-        .btn-filtro:hover, .btn-filtro.activo { color: #ffffff; background: var(--cy); border-color: var(--cy); font-weight: bold; }
+        .btn-filtro:hover, .btn-filtro.activo { color: #ffffff; background: var(--cy); border-color: var(--cy); font-weight: bold; box-shadow: 0 0 10px rgba(224, 102, 255, 0.5); }
         
         h2 { font-size: 22px; margin-bottom: 20px; color: var(--cy); border-left: 4px solid var(--cy); padding-left: 12px; }
         .grid-modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 22px; }
         
-        .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; gap: 12px; position: relative; transition: transform 0.2s, border-color 0.2s; }
-        .card:hover { border-color: var(--cy); transform: translateY(-3px); }
+        /* Iluminación elegante alrededor de las tarjetas */
+        .card { 
+            background: var(--panel); 
+            border: 1px solid var(--line); 
+            border-radius: 14px; 
+            padding: 24px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            position: relative; 
+            box-shadow: 0 0 15px rgba(224, 102, 255, 0.15), inset 0 0 15px rgba(224, 102, 255, 0.05); 
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .card:hover { 
+            border-color: var(--cy); 
+            transform: translateY(-5px); 
+            box-shadow: 0 0 25px rgba(224, 102, 255, 0.4), 0 0 10px rgba(240, 70, 210, 0.2); 
+        }
         .card h3 { font-size: 19px; color: var(--tx); padding-right: 30px; }
         .badge-doc { font-size: 12.5px; color: var(--cy); font-weight: bold; background: rgba(224, 102, 255, 0.12); border: 1px solid rgba(224, 102, 255, 0.3); border-radius: 6px; padding: 2px 8px; display: inline-block; width: fit-content; }
         .card p { font-size: 14.5px; color: var(--mut); }
@@ -55,7 +71,7 @@
         .tag { font-size: 12px; background: var(--panel2); border: 1px solid var(--line); color: var(--cy); padding: 3px 10px; border-radius: 6px; }
 
         footer { margin-top: 60px; text-align: center; color: var(--mut); font-size: 14px; border-top: 1px solid var(--line); padding-top: 25px; }
-        footer b { color: var(--tx); }
+        footer b { color: var(--cy); }
     </style>
 </head>
 <body>
@@ -88,7 +104,7 @@
 
     <footer>
         <div class="wrap">
-            <p><b>Desarrollado por:</b> Axel Pineda · Instituto Nacional Cantón Lourdes (INDEL)</p>
+            <p><b>Creado por:</b> Daniela Colocho · Instituto Nacional Cantón Lourdes (INDEL)</p>
             <p style="font-size: 12px; margin-top: 4px; color: var(--mut);">3.º Bachillerato Técnico Vocacional en Desarrollo de Software «B»</p>
         </div>
     </footer>
@@ -99,7 +115,7 @@
         id: "3.0",
         titulo: "Módulo 3.0 · Orientación y Equipos",
         docente: "Profesor Javier Mineros",
-        desc: "Organización inicial del tercer año, conformación de equipos de trabajo técnico, portafolios digitales y distribución de accesos QR para el seguimiento académico.",
+        desc: "Fase de inducción y estructuración colaborativa del año escolar. Se definieron metodologías de trabajo en equipo, estándares para portafolios digitales y control de asistencia mediante identificadores QR.",
         investigacion: [],
         herramientas: ["Google Classroom", "Drive", "Generadores QR"],
         tags: ["#Organización", "#Equipos", "#Portafolio"]
@@ -108,7 +124,7 @@
         id: "3.2",
         titulo: "Módulo 3.2 · Mantenimiento y Operación de Sistemas",
         docente: "Profesor Javier Mineros",
-        desc: "Investigación profunda sobre el ciclo de vida del software (SDLC), metodologías de soporte técnico, normativas ISO, ITIL 4, SLAs y planes de contingencia (DRP/BCP).",
+        desc: "Estudio práctico enfocado en garantizar la estabilidad tecnológica corporativa. Abarca marcos de trabajo ITIL, cumplimiento de estándares de calidad ISO, acuerdos de nivel de servicio (SLA) y gestión de incidentes en entornos de producción.",
         investigacion: [
             "Ciclo de vida (SDLC) y Mantenimiento (Correctivo, Adaptativo, Perfectivo, Preventivo).",
             "Niveles de Soporte Técnico (Tier 1 a Tier 4).",
@@ -124,7 +140,7 @@
         id: "3.3",
         titulo: "Módulo 3.3 · Administración de Bases de Datos",
         docente: "Profesor Javier Mineros",
-        desc: "Gestión de bases de datos relacionales, ejecución de consultas SQL complejas, creación de dashboards interactivos en Excel y análisis visual de datos con Power BI.",
+        desc: "Modelado, manipulación y extracción estratégica de información masiva. Se implementaron consultas estructuradas complejas en SQL Server y tableros dinámicos en Power BI para apoyo a la toma de decisiones.",
         investigacion: [],
         herramientas: ["SQL Server", "Microsoft Excel", "Power BI", "Visual Studio Code"],
         tags: ["#Power BI", "#Excel", "#SQL Server", "#Dashboards"]
@@ -133,7 +149,7 @@
         id: "3.4",
         titulo: "Módulo 3.4 · Documentación y Creación de Apps",
         docente: "Profesor Arcides Canales",
-        desc: "Desarrollo de software en Python, interfaces gráficas con Avalonia UI y Flet, integración con Odoo ERP, arquitectura por fases y ejecución de prácticas avanzadas en .NET MAUI.",
+        desc: "Diseño y construcción de soluciones de software multiplataforma. Incluye programación estructurada y orientada a objetos en Python, persistencia local con SQLite y desarrollo de interfaces modernas utilizando .NET MAUI y Flet.",
         investigacion: [
             "Práctica 11 (Base de datos CRUD-IA): DataBinding y DemoIntroAsync (Individual).",
             "Aplicación TodoSuCarnet con CRUD en SQLite.",
@@ -147,7 +163,7 @@
         id: "3.8",
         titulo: "Módulo 3.8 · Proyecto Innovador de Desarrollo",
         docente: "Profesor Arcides Canales",
-        desc: "Ciclo completo de ingeniería de software: manuales de usuario/sistema, metodología SCRUM, proyecto UNA ESTRELLA en .NET MAUI, exposiciones y tiendas virtuales.",
+        desc: "Aplicación de marcos ágiles SCRUM para la creación de un producto tecnológico integral. Integración de comercio electrónico con PrestaShop, arquitectura de aplicaciones multiplataforma y desarrollo documental completo.",
         investigacion: [
             "Puesta en marcha de PrestaShop: temas, categorías, 5 productos por categoría, 4 Packs, cupones de descuento, descargas virtuales y marcas.",
             "MatchGame (Investigación complementaria con figuras aleatorias, timer y reinicio).",
@@ -160,7 +176,7 @@
         id: "3.9",
         titulo: "Módulo 3.9 · Integración y Feria de Portales",
         docente: "Profesor Arcides Canales y Javier Mineros",
-        desc: "Módulo integrador enfocado en la consolidación del Portal HUB de Repaso Anual, empaquetado de versiones (v0.2 a v1.0), despliegue en GitHub Pages y defensa individual.",
+        desc: "Consolidación y despliegue continuo de proyectos acumulados. Enfocado en la optimización de código semántico Web, empaquetado final de versiones (v1.0) y la publicación en producción a través de GitHub Pages.",
         investigacion: [
             "Estructuración de componentes web reutilizables (HTML5, CSS Grid/Flexbox y JavaScript nativo sin frameworks).",
             "Control estricto de versiones en repositorio público con convenciones de commits y etiquetado.",
@@ -255,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         contenedor.innerHTML = lista.map(m => `
-            <article class="card" style="background:rgba(22, 18, 43, 0.88); backdrop-filter:blur(8px); border:1px solid var(--line); border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:12px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+            <article class="card" style="background:rgba(22, 18, 43, 0.88); backdrop-filter:blur(8px); padding:22px; display:flex; flex-direction:column; gap:12px;">
                 <h3 style="color:var(--tx); font-size:18px;">${m.titulo}</h3>
                 <span class="badge-doc" style="color: var(--cy); font-size: 13px; font-weight: bold;">👨‍🏫 ${m.docente}</span>
                 <p style="color:var(--mut); font-size:14.5px; line-height:1.5;">${m.desc}</p>
