@@ -161,7 +161,7 @@
             margin: 0 auto; 
         }
 
-        /* Barra de progreso guardado */
+        /* Barra de progreso guardado en el navegador */
         .progress-box {
             background: var(--panel-card);
             border: 1px solid var(--line);
@@ -199,7 +199,7 @@
             transition: width 0.4s ease;
         }
 
-        /* Controles de Filtros y Buscador */
+        /* Controles de Filtros y Buscador en Tiempo Real */
         .controls-section { 
             margin: 30px 0 45px; 
             display: flex; 
@@ -284,7 +284,7 @@
             gap: 30px; 
         }
 
-        /* --- ESTRUCTURA INTERACTIVA DE TARJETA --- */
+        /* --- TARJETAS INTERACTIVAS --- */
         .card { 
             background: var(--panel-card); 
             backdrop-filter: blur(16px);
@@ -345,7 +345,6 @@
             line-height: 1.65; 
         }
 
-        /* Checkbox de completado por tarjeta */
         .check-repaso {
             display: flex;
             align-items: center;
@@ -432,7 +431,7 @@
             font-weight: 600;
         }
 
-        /* --- SECCIÓN QUIZ INTERACTIVO --- */
+        /* --- QUIZ INTERACTIVO CON RETROALIMENTACIÓN INMEDIATA --- */
         .quiz-section {
             margin-top: 70px;
             background: var(--panel-card);
@@ -529,7 +528,7 @@
 </head>
 <body>
 
-    <!-- Navbar Fijo con Toggle de Modo Claro / Oscuro -->
+    <!-- Navbar con botón para alternar Modo Claro/Oscuro -->
     <nav class="navbar">
         <div class="wrap nav-container">
             <div class="brand-logo">
@@ -542,13 +541,13 @@
         </div>
     </nav>
 
-    <!-- Header Principal Gigante con Letra de Carta -->
+    <!-- Header Principal -->
     <header class="wrap hero-section">
         <span class="sub-brand">Instituto Nacional Cantón Lourdes</span>
         <h1 class="hero-title-big">Portal de Repaso</h1>
         <p class="lead">Resumen integral de módulos, proyectos, investigación de soporte y herramientas del año.</p>
 
-        <!-- Guardado de Progreso del Repaso -->
+        <!-- Barra de Progreso guardada localmente -->
         <div class="progress-box">
             <div class="progress-info">
                 <span>📈 Tu Progreso de Repaso:</span>
@@ -561,7 +560,7 @@
     </header>
 
     <main class="wrap">
-        <!-- Buscador en tiempo real y Filtros -->
+        <!-- Buscador y Filtros -->
         <section class="controls-section">
             <div class="search-wrapper">
                 <input type="text" id="buscador" placeholder="🔎 Busca por módulo, tema (ej: ITIL, Python, SLA) o herramienta en tiempo real...">
@@ -574,20 +573,16 @@
             </div>
         </section>
 
-        <!-- Grid de Contenido -->
+        <!-- Contenedor Dinámico de Módulos -->
         <section>
             <h2 class="section-title">Módulos del Año</h2>
-            <div id="contenedor-modulos" class="grid-modulos">
-                <!-- Carga dinámica -->
-            </div>
+            <div id="contenedor-modulos" class="grid-modulos"></div>
         </section>
 
-        <!-- Quiz Interactivo con Retroalimentación Inmediata -->
+        <!-- Quiz Interactivo -->
         <section class="quiz-section">
             <h3 class="quiz-title">🧠 Quiz Interactivo de Repaso Rápido</h3>
-            <div id="quizContainer">
-                <!-- Carga dinámica de preguntas -->
-            </div>
+            <div id="quizContainer"></div>
         </section>
     </main>
 
@@ -754,7 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressText = document.getElementById("progressText");
     const quizContainer = document.getElementById("quizContainer");
 
-    // Canvas de fondo animado
+    // Fondo de partículas interactivo
     const canvas = document.createElement('canvas');
     canvas.id = 'bg-canvas';
     canvas.style.position = 'fixed';
@@ -904,7 +899,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
         }).join('');
 
-        // Eventos a checkboxes
         document.querySelectorAll(".chk-progreso").forEach(chk => {
             chk.addEventListener("change", (e) => {
                 const modId = e.target.getAttribute("data-id");
@@ -962,7 +956,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. RENDER QUIZ INTERACTIVO
+    // 5. RENDER QUIZ INTERACTIVO CON RETROALIMENTACIÓN INMEDIATA
     function renderQuiz() {
         if (!quizContainer) return;
         quizContainer.innerHTML = preguntasQuiz.map((q, qIndex) => `
@@ -984,7 +978,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const preguntaData = preguntasQuiz[qIdx];
                 const feedbackEl = document.getElementById(`feedback-${qIdx}`);
 
-                // Deshabilitar botones de esta pregunta
                 const botonesDePregunta = document.querySelectorAll(`.quiz-btn[data-q="${qIdx}"]`);
                 botonesDePregunta.forEach(b => b.disabled = true);
 
