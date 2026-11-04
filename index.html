@@ -26,6 +26,23 @@
             --shadow-neon: 0 14px 40px rgba(255, 94, 199, 0.35);
         }
 
+        /* Variables para Modo Claro */
+        body.light-mode {
+            --bg: #f5edfa;
+            --panel: #ffffff;
+            --panel-hover: #f3e5fa;
+            --panel-card: rgba(255, 255, 255, 0.9);
+            --line: #d8b4e2;
+            --line-light: #c28ed5;
+            --tx: #260a35;
+            --mut: #6d427d;
+            --cy: #d81b9c;
+            --mg: #b51a9e;
+            --am: #d48b00;
+            --gr: #b8439d;
+            --shadow-neon: 0 14px 30px rgba(216, 27, 156, 0.2);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
@@ -36,6 +53,7 @@
             padding-top: 80px;
             padding-bottom: 60px;
             min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .wrap { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
@@ -53,6 +71,11 @@
             z-index: 100;
             display: flex;
             align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        body.light-mode .navbar {
+            background: rgba(245, 237, 250, 0.9);
         }
 
         .nav-container {
@@ -82,9 +105,29 @@
             letter-spacing: 0.5px;
         }
 
+        .btn-theme-toggle {
+            background: var(--panel);
+            border: 1px solid var(--line-light);
+            color: var(--tx);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .btn-theme-toggle:hover {
+            border-color: var(--cy);
+            transform: scale(1.03);
+        }
+
         /* --- HERO SECCIÓN GIGANTE --- */
         .hero-section {
-            padding: 50px 20px 30px;
+            padding: 40px 20px 20px;
             text-align: center;
             position: relative;
         }
@@ -93,12 +136,12 @@
             font-family: 'Dancing Script', cursive;
             font-size: clamp(55px, 9vw, 95px);
             font-weight: 700;
-            background: linear-gradient(135deg, #ffffff 0%, var(--cy) 45%, var(--am) 100%);
+            background: linear-gradient(135deg, var(--tx) 0%, var(--cy) 45%, var(--am) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
             margin-bottom: 12px;
-            filter: drop-shadow(0 0 25px rgba(255, 94, 199, 0.4));
+            filter: drop-shadow(0 0 25px rgba(255, 94, 199, 0.3));
         }
 
         .sub-brand {
@@ -118,11 +161,74 @@
             margin: 0 auto; 
         }
 
-        /* Controles de Filtros */
+        /* Barra de progreso guardado */
+        .progress-box {
+            background: var(--panel-card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 16px 24px;
+            margin: 25px auto 10px;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-shadow: inset 0 0 15px rgba(255, 94, 199, 0.05);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--tx);
+        }
+
+        .progress-bar-bg {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cy), var(--am));
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* Controles de Filtros y Buscador */
         .controls-section { 
-            margin: 35px 0 45px; 
+            margin: 30px 0 45px; 
             display: flex; 
-            justify-content: center; 
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .search-wrapper {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        #buscador {
+            width: 100%;
+            padding: 14px 22px;
+            background: var(--panel-card);
+            border: 1px solid var(--line-light);
+            border-radius: 20px;
+            color: var(--tx);
+            font-size: 15px;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        #buscador:focus {
+            border-color: var(--cy);
+            box-shadow: 0 0 20px rgba(255, 94, 199, 0.3);
         }
 
         .filtros { 
@@ -199,7 +305,6 @@
             background: var(--panel-hover);
         }
 
-        /* Encabezado dinámico de tarjeta */
         .card-head-box {
             display: flex;
             justify-content: space-between;
@@ -240,13 +345,39 @@
             line-height: 1.65; 
         }
 
-        /* Bloque destacado para la investigación */
+        /* Checkbox de completado por tarjeta */
+        .check-repaso {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--am);
+            background: rgba(255, 209, 102, 0.1);
+            border: 1px solid rgba(255, 209, 102, 0.25);
+            padding: 8px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .check-repaso input {
+            accent-color: var(--cy);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
         .sec-investigacion { 
-            background: rgba(9, 5, 17, 0.75); 
+            background: rgba(9, 5, 17, 0.4); 
             border: 1px solid rgba(255, 209, 102, 0.35); 
             border-radius: 18px; 
             padding: 18px; 
-            box-shadow: inset 0 0 20px rgba(255, 209, 102, 0.05);
+        }
+
+        body.light-mode .sec-investigacion {
+            background: rgba(255, 255, 255, 0.6);
         }
 
         .sec-investigacion h4 { 
@@ -265,7 +396,6 @@
             gap: 6px;
         }
 
-        /* Sección de herramientas */
         .herramientas-block {
             font-size: 13px;
             color: var(--tx);
@@ -284,7 +414,6 @@
             letter-spacing: 0.8px;
         }
 
-        /* Etiquetas inferiores */
         .tags { 
             display: flex; 
             flex-wrap: wrap; 
@@ -303,6 +432,88 @@
             font-weight: 600;
         }
 
+        /* --- SECCIÓN QUIZ INTERACTIVO --- */
+        .quiz-section {
+            margin-top: 70px;
+            background: var(--panel-card);
+            border: 1px solid var(--line-light);
+            border-radius: 26px;
+            padding: 35px;
+            box-shadow: var(--shadow-neon);
+        }
+
+        .quiz-title {
+            font-size: 22px;
+            color: var(--cy);
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quiz-card {
+            background: rgba(9, 5, 17, 0.4);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        body.light-mode .quiz-card {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .quiz-pregunta {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--tx);
+            margin-bottom: 12px;
+        }
+
+        .quiz-opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quiz-btn {
+            text-align: left;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            color: var(--tx);
+            padding: 10px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .quiz-btn:hover {
+            border-color: var(--cy);
+            background: var(--panel-hover);
+        }
+
+        .quiz-btn.correcto {
+            background: rgba(46, 204, 113, 0.2) !important;
+            border-color: #2ecc71 !important;
+            color: #2ecc71 !important;
+            font-weight: bold;
+        }
+
+        .quiz-btn.incorrecto {
+            background: rgba(231, 76, 60, 0.2) !important;
+            border-color: #e74c3c !important;
+            color: #e74c3c !important;
+        }
+
+        .quiz-feedback {
+            margin-top: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            display: none;
+        }
+
         /* Footer */
         footer { 
             margin-top: 90px; 
@@ -318,14 +529,16 @@
 </head>
 <body>
 
-    <!-- Navbar Fijo -->
+    <!-- Navbar Fijo con Toggle de Modo Claro / Oscuro -->
     <nav class="navbar">
         <div class="wrap nav-container">
             <div class="brand-logo">
                 <span>INDEL</span>
                 <span class="brand-pill">3.º DS «B»</span>
             </div>
-            <div style="font-size: 13px; color: var(--mut);">Portal HUB 2026</div>
+            <button class="btn-theme-toggle" id="btnThemeToggle">
+                <span id="themeIcon">🌙</span> <span id="themeText">Modo Oscuro</span>
+            </button>
         </div>
     </nav>
 
@@ -334,11 +547,25 @@
         <span class="sub-brand">Instituto Nacional Cantón Lourdes</span>
         <h1 class="hero-title-big">Portal de Repaso</h1>
         <p class="lead">Resumen integral de módulos, proyectos, investigación de soporte y herramientas del año.</p>
+
+        <!-- Guardado de Progreso del Repaso -->
+        <div class="progress-box">
+            <div class="progress-info">
+                <span>📈 Tu Progreso de Repaso:</span>
+                <span id="progressText">0 de 9 completados (0%)</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBarFill"></div>
+            </div>
+        </div>
     </header>
 
     <main class="wrap">
-        <!-- Filtros por Botones -->
+        <!-- Buscador en tiempo real y Filtros -->
         <section class="controls-section">
+            <div class="search-wrapper">
+                <input type="text" id="buscador" placeholder="🔎 Busca por módulo, tema (ej: ITIL, Python, SLA) o herramienta en tiempo real...">
+            </div>
             <div class="filtros">
                 <button class="btn-filtro activo" data-filtro="todos">Todos los Módulos</button>
                 <button class="btn-filtro" data-filtro="Javier Mineros">Prof. Javier Mineros</button>
@@ -352,6 +579,14 @@
             <h2 class="section-title">Módulos del Año</h2>
             <div id="contenedor-modulos" class="grid-modulos">
                 <!-- Carga dinámica -->
+            </div>
+        </section>
+
+        <!-- Quiz Interactivo con Retroalimentación Inmediata -->
+        <section class="quiz-section">
+            <h3 class="quiz-title">🧠 Quiz Interactivo de Repaso Rápido</h3>
+            <div id="quizContainer">
+                <!-- Carga dinámica de preguntas -->
             </div>
         </section>
     </main>
@@ -418,15 +653,17 @@
     {
         id: "3.4",
         titulo: "Módulo 3.4 · Elaboración de Documentación de Sistemas Informáticos",
-        docente: "Profesor Javier Mineros",
-        desc: "Diseño, estandarización y redacción de la documentación técnica y de usuario para proyectos de software. Elaboración de manuales de sistema, diagramación de arquitecturas y guía de mantenimiento.",
+        docente: "Profesor Francisco Arcides Canales",
+        desc: "Creación progresiva de proyectos de software por fases, programación en Python, desarrollo de componentes UI en Avalonia y WPF, integración con sistemas ERP Odoo y generación de documentos finales.",
         investigacion: [
-            "Estructuración de manuales técnicos y de usuario.",
-            "Diagramación de casos de uso y modelos conceptuales.",
-            "Estándares de documentación técnica y control de versiones."
+            "Primer contacto con Python y creación de aplicaciones.",
+            "Guía individual de Python y orientaciones para proyecto.",
+            "Desarrollo por fases: Fase 1, Fase 2-3 (Arquitectura) y Fase 4 (Desarrollo).",
+            "Trabajo con WPF (Diseño e IA), Avalonia UI y ERP Odoo.",
+            "Generalidades de Proyecto Integrador, Fase 5, 6, 7 y Documentos Finales."
         ],
-        herramientas: ["Microsoft Word", "Visio", "Markdown", "Draw.io"],
-        tags: ["#Documentacion", "#Manuales", "#Diagramacion", "#Sistemas"]
+        herramientas: ["Python", "Avalonia UI", "WPF", "Odoo ERP", "VS Code", "IA Visual Studio Code"],
+        tags: ["#Python", "#Avalonia", "#WPF", "#OdooERP", "#ArquitecturaSoftware", "#DocumentosFinales"]
     },
     {
         id: "Móviles",
@@ -485,9 +722,37 @@
     }
 ];
 
+    const preguntasQuiz = [
+        {
+            pregunta: "¿Qué tecnología se utilizó para desarrollo multiplataforma en el Módulo 3.4 y Módulo 2?",
+            opciones: [".NET MAUI", "PHP Puro", "AngularJS", "Assembly"],
+            correcta: 0,
+            explicacion: "¡Correcto! Se utilizó .NET MAUI para crear aplicaciones multiplataforma."
+        },
+        {
+            pregunta: "¿Cuál norma ISO pertenece a la gestión de seguridad de la información vista en Módulo 3.2?",
+            opciones: ["ISO 9001", "ISO 27001", "ISO 14001", "ISO 31000"],
+            correcta: 1,
+            explicacion: "¡Excelente! La ISO 27001 rige la Seguridad de la Información."
+        },
+        {
+            pregunta: "¿Qué herramienta se empleó para dashboards analíticos en el Módulo 3.3?",
+            opciones: ["Power BI", "Photoshop", "Wordpad", "Figma"],
+            correcta: 0,
+            explicacion: "¡Muy bien! Power BI fue el motor para tableros interactivos de datos."
+        }
+    ];
+
 document.addEventListener("DOMContentLoaded", () => {
     const contenedor = document.getElementById("contenedor-modulos");
     const botonesFiltro = document.querySelectorAll(".btn-filtro");
+    const buscador = document.getElementById("buscador");
+    const btnThemeToggle = document.getElementById("btnThemeToggle");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
+    const progressBarFill = document.getElementById("progressBarFill");
+    const progressText = document.getElementById("progressText");
+    const quizContainer = document.getElementById("quizContainer");
 
     // Canvas de fondo animado
     const canvas = document.createElement('canvas');
@@ -510,7 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
         height = canvas.height = window.innerHeight;
     });
 
-    const particles = Array.from({ length: 45 }, () => ({
+    const particles = Array.from({ length: 40 }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.5,
@@ -521,7 +786,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#090511';
+        ctx.fillStyle = document.body.classList.contains('light-mode') ? '#f5edfa' : '#090511';
         ctx.fillRect(0, 0, width, height);
 
         particles.forEach(p => {
@@ -557,17 +822,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animate();
 
+    // 1. MODO CLARO / OSCURO (localStorage)
+    const currentTheme = localStorage.getItem("portal_theme");
+    if (currentTheme === "light") {
+        document.body.classList.add("light-mode");
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Modo Claro";
+    }
+
+    btnThemeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        const isLight = document.body.classList.contains("light-mode");
+        localStorage.setItem("portal_theme", isLight ? "light" : "dark");
+        themeIcon.textContent = isLight ? "☀️" : "🌙";
+        themeText.textContent = isLight ? "Modo Claro" : "Modo Oscuro";
+    });
+
+    // 2. PROGRESO GUARDADO EN LOCALSTORAGE
+    function obtenerCompletados() {
+        return JSON.parse(localStorage.getItem("portal_repaso_progress") || "[]");
+    }
+
+    function actualizarBarraProgreso() {
+        const completados = obtenerCompletados();
+        const total = modulosData.length;
+        const porcentaje = Math.round((completados.length / total) * 100);
+        progressBarFill.style.width = `${porcentaje}%`;
+        progressText.textContent = `${completados.length} de ${total} completados (${porcentaje}%)`;
+    }
+
     function normalizar(texto) {
         return texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
     }
 
+    // 3. RENDERIZADO DINÁMICO
     function renderizar(lista) {
         if (!contenedor) return;
         if (lista.length === 0) {
             contenedor.innerHTML = `<p style="color:var(--mut); grid-column: 1/-1; text-align:center; padding: 40px; background: var(--panel-card); border-radius: 16px; border: 1px solid var(--line);">No se encontraron módulos coincidentes.</p>`;
             return;
         }
-        contenedor.innerHTML = lista.map(m => `
+
+        const completados = obtenerCompletados();
+
+        contenedor.innerHTML = lista.map(m => {
+            const isChecked = completados.includes(m.id) ? "checked" : "";
+            return `
             <article class="card">
                 <div class="card-head-box">
                     <span class="badge-mod-id">MÓDULO ${m.id}</span>
@@ -575,6 +875,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
 
                 <h3>${m.titulo}</h3>
+                
+                <label class="check-repaso">
+                    <input type="checkbox" class="chk-progreso" data-id="${m.id}" ${isChecked}>
+                    <span>Marcar como repasado</span>
+                </label>
+
                 <p class="desc">${m.desc}</p>
                 
                 ${m.investigacion.length > 0 ? `
@@ -595,33 +901,109 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${m.tags.map(t => `<span class="tag">${t}</span>`).join('')}
                 </div>
             </article>
-        `).join('');
+        `;
+        }).join('');
+
+        // Eventos a checkboxes
+        document.querySelectorAll(".chk-progreso").forEach(chk => {
+            chk.addEventListener("change", (e) => {
+                const modId = e.target.getAttribute("data-id");
+                let list = obtenerCompletados();
+                if (e.target.checked) {
+                    if (!list.includes(modId)) list.push(modId);
+                } else {
+                    list = list.filter(id => id !== modId);
+                }
+                localStorage.setItem("portal_repaso_progress", JSON.stringify(list));
+                actualizarBarraProgreso();
+            });
+        });
     }
 
-    // Renderizar inicialmente todos los módulos
     renderizar(modulosData);
+    actualizarBarraProgreso();
 
-    // Eventos para los botones de filtro
+    // 4. FILTRADO Y BUSCADOR EN TIEMPO REAL
+    function aplicarFiltros() {
+        const textoBuscador = normalizar(buscador.value.trim());
+        const btnActivo = document.querySelector(".btn-filtro.activo");
+        const filtroTipo = btnActivo ? btnActivo.getAttribute("data-filtro") : "todos";
+
+        const resultado = modulosData.filter(m => {
+            const coincideTexto = normalizar(m.titulo).includes(textoBuscador) ||
+                                  normalizar(m.desc).includes(textoBuscador) ||
+                                  normalizar(m.docente).includes(textoBuscador) ||
+                                  m.investigacion.some(inv => normalizar(inv).includes(textoBuscador)) ||
+                                  m.herramientas.some(h => normalizar(h).includes(textoBuscador)) ||
+                                  m.tags.some(t => normalizar(t).includes(textoBuscador));
+
+            let coincideFiltro = true;
+            if (filtroTipo === "Investigacion") {
+                coincideFiltro = m.investigacion.length > 0;
+            } else if (filtroTipo !== "todos") {
+                coincideFiltro = normalizar(m.docente).includes(normalizar(filtroTipo));
+            }
+
+            return coincideTexto && coincideFiltro;
+        });
+
+        renderizar(resultado);
+    }
+
+    if (buscador) {
+        buscador.addEventListener("input", aplicarFiltros);
+    }
+
     botonesFiltro.forEach(boton => {
         boton.addEventListener("click", () => {
             botonesFiltro.forEach(b => b.classList.remove("activo"));
             boton.classList.add("activo");
-
-            const valorFiltro = boton.getAttribute("data-filtro");
-
-            if (valorFiltro === "todos") {
-                renderizar(modulosData);
-            } else if (valorFiltro === "Investigacion") {
-                const filtrados = modulosData.filter(m => m.investigacion.length > 0);
-                renderizar(filtrados);
-            } else {
-                const filtrados = modulosData.filter(m => 
-                    normalizar(m.docente).includes(normalizar(valorFiltro))
-                );
-                renderizar(filtrados);
-            }
+            aplicarFiltros();
         });
     });
+
+    // 5. RENDER QUIZ INTERACTIVO
+    function renderQuiz() {
+        if (!quizContainer) return;
+        quizContainer.innerHTML = preguntasQuiz.map((q, qIndex) => `
+            <div class="quiz-card">
+                <p class="quiz-pregunta">${qIndex + 1}. ${q.pregunta}</p>
+                <div class="quiz-opciones">
+                    ${q.opciones.map((op, opIndex) => `
+                        <button class="quiz-btn" data-q="${qIndex}" data-op="${opIndex}">${op}</button>
+                    `).join('')}
+                </div>
+                <div class="quiz-feedback" id="feedback-${qIndex}"></div>
+            </div>
+        `).join('');
+
+        document.querySelectorAll(".quiz-btn").forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                const qIdx = parseInt(e.target.getAttribute("data-q"));
+                const opIdx = parseInt(e.target.getAttribute("data-op"));
+                const preguntaData = preguntasQuiz[qIdx];
+                const feedbackEl = document.getElementById(`feedback-${qIdx}`);
+
+                // Deshabilitar botones de esta pregunta
+                const botonesDePregunta = document.querySelectorAll(`.quiz-btn[data-q="${qIdx}"]`);
+                botonesDePregunta.forEach(b => b.disabled = true);
+
+                if (opIdx === preguntaData.correcta) {
+                    e.target.classList.add("correcto");
+                    feedbackEl.style.color = "#2ecc71";
+                    feedbackEl.textContent = `${preguntaData.explicacion}`;
+                } else {
+                    e.target.classList.add("incorrecto");
+                    botonesDePregunta[preguntaData.correcta].classList.add("correcto");
+                    feedbackEl.style.color = "#e74c3c";
+                    feedbackEl.textContent = `❌ Respuesta incorrecta. ${preguntaData.explicacion}`;
+                }
+                feedbackEl.style.display = "block";
+            });
+        });
+    }
+
+    renderQuiz();
 });
     </script>
 </body>
