@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Repaso · 3.º DS «B» HUB</title>
-    <!-- Fuente manuscrita/carta para el título principal -->
+    <!-- Fuentes: Manuscrita grande para el título + fuente moderna para el cuerpo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #0b0713;
-            --panel: #160d24;
-            --panel-hover: #221237;
-            --panel-card: rgba(25, 14, 40, 0.9);
-            --line: #421c56;
+            --bg: #090511;
+            --panel: #140b21;
+            --panel-hover: #1f0f33;
+            --panel-card: rgba(23, 13, 38, 0.88);
+            --line: #3d1952;
             --line-light: #6a2b88;
             --tx: #fdf5ff;
-            --mut: #d2a9e3;
+            --mut: #ce9ee0;
             --cy: #ff5ec7;              /* Rosado Neón */
             --mg: #f046d2;              /* Magenta */
-            --am: #ffd166;              /* Dorado elegante */
-            --gr: #ff85d5;              /* Rosa pastel */
-            --shadow-neon: 0 12px 35px 0 rgba(255, 94, 199, 0.3);
+            --am: #ffd166;              /* Dorado brillante */
+            --gr: #ff9ee2;              /* Rosa pastel */
+            --shadow-neon: 0 14px 40px rgba(255, 94, 199, 0.35);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,7 +38,7 @@
             min-height: 100vh;
         }
 
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .wrap { max-width: 1250px; margin: 0 auto; padding: 0 24px; }
 
         /* Navbar superior */
         .navbar {
@@ -47,7 +47,7 @@
             left: 0;
             right: 0;
             height: 70px;
-            background: rgba(11, 7, 19, 0.85);
+            background: rgba(9, 5, 17, 0.88);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--line);
             z-index: 100;
@@ -82,33 +82,45 @@
             letter-spacing: 0.5px;
         }
 
-        /* Hero Header con letra de carta */
-        header { 
-            padding: 40px 0 20px; 
-            text-align: center; 
+        /* --- HERO SECCIÓN GIGANTE --- */
+        .hero-section {
+            padding: 50px 20px 30px;
+            text-align: center;
+            position: relative;
         }
 
-        h1 { 
+        .hero-title-big {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(40px, 6vw, 65px); 
+            font-size: clamp(55px, 9vw, 95px);
             font-weight: 700;
-            background: linear-gradient(135deg, #ffffff 0%, var(--cy) 50%, var(--am) 100%);
+            background: linear-gradient(135deg, #ffffff 0%, var(--cy) 45%, var(--am) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 94, 199, 0.3);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 0 25px rgba(255, 94, 199, 0.4));
+        }
+
+        .sub-brand {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--am);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .lead { 
             color: var(--mut); 
-            font-size: 16px; 
-            max-width: 650px; 
+            font-size: 17px; 
+            max-width: 700px; 
             margin: 0 auto; 
         }
 
         /* Controles de Filtros */
         .controls-section { 
-            margin: 30px 0 40px; 
+            margin: 35px 0 45px; 
             display: flex; 
             justify-content: center; 
         }
@@ -121,14 +133,14 @@
         }
 
         .btn-filtro { 
-            font-size: 13px; 
+            font-size: 13.5px; 
             background: var(--panel); 
             border: 1px solid var(--line); 
             color: var(--mut); 
             padding: 10px 24px; 
             border-radius: 30px; 
             cursor: pointer; 
-            transition: all 0.25s ease; 
+            transition: all 0.3s ease; 
         }
 
         .btn-filtro:hover, .btn-filtro.activo { 
@@ -136,140 +148,112 @@
             background: linear-gradient(135deg, var(--cy), var(--mg)); 
             border-color: transparent; 
             font-weight: 600; 
-            box-shadow: 0 4px 18px rgba(255, 94, 199, 0.45); 
+            box-shadow: 0 4px 20px rgba(255, 94, 199, 0.5); 
+            transform: scale(1.03);
         }
 
         /* Layout Grid de Tarjetas */
         .section-title { 
-            font-size: 22px; 
-            margin-bottom: 25px; 
+            font-size: 24px; 
+            margin-bottom: 30px; 
             color: var(--tx); 
             display: flex;
             align-items: center;
             gap: 12px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .section-title::before {
             content: '';
-            width: 5px;
-            height: 22px;
+            width: 6px;
+            height: 24px;
             background: var(--cy);
             border-radius: 4px;
+            box-shadow: 0 0 10px var(--cy);
         }
 
         .grid-modulos { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
-            gap: 28px; 
+            gap: 30px; 
         }
 
-        /* --- NUEVA ESTRUCTURA DE TARJETA --- */
+        /* --- NUEVA ESTRUCTURA INTERACTIVA DE TARJETA --- */
         .card { 
             background: var(--panel-card); 
             backdrop-filter: blur(16px);
             border: 1px solid var(--line); 
-            border-radius: 24px; 
-            padding: 28px; 
+            border-radius: 26px; 
+            padding: 30px; 
             display: flex; 
             flex-direction: column; 
-            gap: 18px; 
+            gap: 20px; 
             position: relative; 
-            overflow: hidden;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--cy), var(--am));
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
         }
 
         .card:hover { 
             border-color: var(--cy); 
-            transform: translateY(-8px); 
+            transform: translateY(-8px) scale(1.01); 
             box-shadow: var(--shadow-neon); 
             background: var(--panel-hover);
         }
 
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        /* Encabezado con badge y módulo */
-        .card-top {
+        /* Encabezado dinámico de tarjeta */
+        .card-head-box {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .card-header-badge {
-            display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .module-id {
+        .badge-mod-id {
+            background: linear-gradient(135deg, rgba(255, 94, 199, 0.2), rgba(255, 209, 102, 0.2));
+            border: 1px solid var(--cy);
+            color: var(--tx);
             font-size: 11px;
             font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--am);
-            background: rgba(255, 209, 102, 0.12);
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 209, 102, 0.25);
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 1px;
         }
 
         .badge-doc { 
-            font-size: 12px; 
+            font-size: 12.5px; 
             color: var(--cy); 
             font-weight: 600; 
             background: rgba(255, 94, 199, 0.12); 
             border: 1px solid rgba(255, 94, 199, 0.3); 
             border-radius: 20px; 
-            padding: 4px 12px; 
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            padding: 4px 14px; 
         }
 
         .card h3 { 
-            font-size: 19px; 
+            font-size: 20px; 
             color: var(--tx); 
             font-weight: 800;
             line-height: 1.35;
         }
 
         .card p.desc { 
-            font-size: 14px; 
+            font-size: 14.5px; 
             color: var(--mut); 
             line-height: 1.65; 
         }
 
         /* Bloque destacado para la investigación */
         .sec-investigacion { 
-            background: rgba(11, 7, 19, 0.7); 
-            border: 1px solid rgba(255, 209, 102, 0.3); 
-            border-radius: 16px; 
-            padding: 16px; 
-            box-shadow: inset 0 0 15px rgba(255, 209, 102, 0.05);
+            background: rgba(9, 5, 17, 0.75); 
+            border: 1px solid rgba(255, 209, 102, 0.35); 
+            border-radius: 18px; 
+            padding: 18px; 
+            box-shadow: inset 0 0 20px rgba(255, 209, 102, 0.05);
         }
 
         .sec-investigacion h4 { 
-            font-size: 13px; 
+            font-size: 13.5px; 
             color: var(--am); 
             margin-bottom: 10px; 
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .sec-investigacion ul { 
@@ -285,10 +269,10 @@
         .herramientas-block {
             font-size: 13px;
             color: var(--tx);
-            background: rgba(255, 94, 199, 0.05);
-            border: 1px solid rgba(255, 94, 199, 0.15);
-            border-radius: 12px;
-            padding: 12px 14px;
+            background: rgba(255, 94, 199, 0.06);
+            border: 1px solid rgba(255, 94, 199, 0.2);
+            border-radius: 14px;
+            padding: 12px 16px;
         }
 
         .herramientas-block b {
@@ -314,14 +298,14 @@
             background: rgba(255, 94, 199, 0.12); 
             border: 1px solid rgba(255, 94, 199, 0.25); 
             color: var(--cy); 
-            padding: 4px 12px; 
+            padding: 5px 14px; 
             border-radius: 20px; 
             font-weight: 600;
         }
 
         /* Footer */
         footer { 
-            margin-top: 80px; 
+            margin-top: 90px; 
             text-align: center; 
             color: var(--mut); 
             font-size: 14px; 
@@ -345,9 +329,10 @@
         </div>
     </nav>
 
-    <!-- Header Principal -->
-    <header class="wrap">
-        <h1>Portal HUB de Repaso Anual</h1>
+    <!-- Header Principal Gigante con Letra de Carta -->
+    <header class="wrap hero-section">
+        <span class="sub-brand">Instituto Nacional Cantón Lourdes</span>
+        <h1 class="hero-title-big">Portal de Repaso</h1>
         <p class="lead">Resumen integral de módulos, proyectos, investigación de soporte y herramientas del año.</p>
     </header>
 
@@ -355,7 +340,7 @@
         <!-- Filtros por Botones -->
         <section class="controls-section">
             <div class="filtros">
-                <button class="btn-filtro activo" data-filtro="todos">Todos</button>
+                <button class="btn-filtro activo" data-filtro="todos">Todos los Módulos</button>
                 <button class="btn-filtro" data-filtro="Javier Mineros">Prof. Javier Mineros</button>
                 <button class="btn-filtro" data-filtro="Arcides Canales">Prof. Arcides Canales</button>
                 <button class="btn-filtro" data-filtro="Investigacion">Investigación M3.2</button>
@@ -482,7 +467,7 @@ document.addEventListener("DOMContentLoaded", () => {
         height = canvas.height = window.innerHeight;
     });
 
-    const particles = Array.from({ length: 40 }, () => ({
+    const particles = Array.from({ length: 45 }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.5,
@@ -493,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function animate() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = '#0b0713';
+        ctx.fillStyle = '#090511';
         ctx.fillRect(0, 0, width, height);
 
         particles.forEach(p => {
@@ -541,14 +526,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         contenedor.innerHTML = lista.map(m => `
             <article class="card">
-                <div class="card-top">
-                    <div class="card-header-badge">
-                        <span class="module-id">MóDULO ${m.id}</span>
-                        <span class="badge-doc">👨‍🏫 ${m.docente}</span>
-                    </div>
-                    <h3>${m.titulo}</h3>
+                <div class="card-head-box">
+                    <span class="badge-mod-id">MÓDULO ${m.id}</span>
+                    <span class="badge-doc">👨‍🏫 ${m.docente}</span>
                 </div>
-                
+
+                <h3>${m.titulo}</h3>
                 <p class="desc">${m.desc}</p>
                 
                 ${m.investigacion.length > 0 ? `
