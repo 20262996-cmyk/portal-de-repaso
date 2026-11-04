@@ -417,17 +417,16 @@
     },
     {
         id: "3.4",
-        titulo: "Módulo 3.4 · Documentación y Creación de Apps",
-        docente: "Profesor Francisco Arcides Canales",
-        desc: "Diseño y construcción de soluciones de software multiplataforma. Incluye programación estructurada y orientada a objetos en Python, persistencia local con SQLite y desarrollo de interfaces modernas utilizando .NET MAUI y Flet.",
+        titulo: "Módulo 3.4 · Elaboración de Documentación de Sistemas Informáticos",
+        docente: "Profesor Javier Mineros",
+        desc: "Diseño, estandarización y redacción de la documentación técnica y de usuario para proyectos de software. Elaboración de manuales de sistema, diagramación de arquitecturas y guía de mantenimiento.",
         investigacion: [
-            "Práctica 11 (Base de datos CRUD-IA): DataBinding y DemoIntroAsync (Individual).",
-            "Aplicación TodoSuCarnet con CRUD en SQLite.",
-            "Uso de IA: Servidor MPC con Excalidraw y Spec-driven development con OpenSpec.",
-            "Práctica 10 y guías de desarrollo con .NET MAUI y SQLite."
+            "Estructuración de manuales técnicos y de usuario.",
+            "Diagramación de casos de uso y modelos conceptuales.",
+            "Estándares de documentación técnica y control de versiones."
         ],
-        herramientas: ["Python", "Avalonia UI", "Flet", "Odoo ERP", "Visual Studio Code", "IA de Visual Studio Code", ".NET MAUI", "SQLite"],
-        tags: ["#Python", "#Odoo", "#CRUD-IA", "#Práctica 11", "#.NET MAUI", "#SQLite"]
+        herramientas: ["Microsoft Word", "Visio", "Markdown", "Draw.io"],
+        tags: ["#Documentacion", "#Manuales", "#Diagramacion", "#Sistemas"]
     },
     {
         id: "Móviles",
@@ -447,7 +446,7 @@
     {
         id: "Inglés",
         titulo: "Módulo 3 · Conversación de Inglés sobre Mantenimiento de Sistemas Informáticos",
-        docente: "Profesor Javier Mineros",
+        docente: "Profesor Francisco Arcides Canales",
         desc: "Desarrollo de competencias comunicativas en idioma inglés enfocadas al soporte técnico, documentación de software, gestión de proyectos ágiles e integración de IA.",
         investigacion: [
             "Práctica 10: SCRUM.",
@@ -483,19 +482,6 @@
         ],
         herramientas: ["Visual Studio Code", "IA de VS Code", "Git", "GitHub", "ASP.NET WebForms", ".NET MAUI", "PrestaShop", "XAMPP"],
         tags: ["#Proyecto Innovador", "#PrestaShop", "#SCRUM", "#.NET MAUI", "#MatchGame", "#GitHub"]
-    },
-    {
-        id: "3.9",
-        titulo: "Módulo 3.9 · Integración y Feria de Portales",
-        docente: "Profesor Francisco Arcides Canales y Javier Mineros",
-        desc: "Consolidación y despliegue continuo de proyectos acumulados. Enfocado en la optimización de código semántico Web, empaquetado final de versiones (v1.0) y la publicación en producción a través de GitHub Pages.",
-        investigacion: [
-            "Estructuración de componentes web reutilizables (HTML5, CSS Grid/Flexbox y JavaScript nativo sin frameworks).",
-            "Control estricto de versiones en repositorio público con convenciones de commits y etiquetado.",
-            "Verificación de criterios de calidad: diseño responsivo para dispositivos móviles, accesibilidad y rendimiento óptimo."
-        ],
-        herramientas: ["Git", "GitHub Pages", "Visual Studio Code", "Markdown", "Live Server"],
-        tags: ["#FeriaDePortales", "#GitHubPages", "#EvaluaciónFinal", "#RepasoIntegral"]
     }
 ];
 
@@ -612,7 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `).join('');
     }
 
-    // Renderizar inicialmente todos los 10 módulos
+    // Renderizar inicialmente todos los módulos
     renderizar(modulosData);
 
     // Eventos para los botones de filtro
