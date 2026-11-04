@@ -7,14 +7,14 @@
     <!-- Fuente manuscrita/carta para el título principal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg: #0b0713;
-            --panel: #180e25;
-            --panel-hover: #231338;
-            --panel-card: rgba(27, 15, 42, 0.85);
+            --panel: #160d24;
+            --panel-hover: #221237;
+            --panel-card: rgba(25, 14, 40, 0.9);
             --line: #421c56;
             --line-light: #6a2b88;
             --tx: #fdf5ff;
@@ -23,7 +23,7 @@
             --mg: #f046d2;              /* Magenta */
             --am: #ffd166;              /* Dorado elegante */
             --gr: #ff85d5;              /* Rosa pastel */
-            --shadow-neon: 0 10px 30px 0 rgba(255, 94, 199, 0.25);
+            --shadow-neon: 0 12px 35px 0 rgba(255, 94, 199, 0.3);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -90,7 +90,7 @@
 
         h1 { 
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(38px, 6vw, 62px); 
+            font-size: clamp(40px, 6vw, 65px); 
             font-weight: 700;
             background: linear-gradient(135deg, #ffffff 0%, var(--cy) 50%, var(--am) 100%);
             -webkit-background-clip: text;
@@ -116,7 +116,7 @@
         .filtros { 
             display: flex; 
             flex-wrap: wrap; 
-            gap: 10px; 
+            gap: 12px; 
             justify-content: center; 
         }
 
@@ -125,7 +125,7 @@
             background: var(--panel); 
             border: 1px solid var(--line); 
             color: var(--mut); 
-            padding: 10px 22px; 
+            padding: 10px 24px; 
             border-radius: 30px; 
             cursor: pointer; 
             transition: all 0.25s ease; 
@@ -136,66 +136,95 @@
             background: linear-gradient(135deg, var(--cy), var(--mg)); 
             border-color: transparent; 
             font-weight: 600; 
-            box-shadow: 0 4px 15px rgba(255, 94, 199, 0.4); 
+            box-shadow: 0 4px 18px rgba(255, 94, 199, 0.45); 
         }
 
-        /* Layout Grid */
+        /* Layout Grid de Tarjetas */
         .section-title { 
-            font-size: 20px; 
+            font-size: 22px; 
             margin-bottom: 25px; 
             color: var(--tx); 
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 700;
         }
 
         .section-title::before {
             content: '';
-            width: 4px;
-            height: 20px;
+            width: 5px;
+            height: 22px;
             background: var(--cy);
             border-radius: 4px;
         }
 
         .grid-modulos { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 25px; 
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
+            gap: 28px; 
         }
 
-        /* Tarjetas Estilo Glass Card */
+        /* --- NUEVA ESTRUCTURA DE TARJETA --- */
         .card { 
             background: var(--panel-card); 
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--line); 
-            border-radius: 20px; 
-            padding: 26px; 
+            border-radius: 24px; 
+            padding: 28px; 
             display: flex; 
             flex-direction: column; 
-            gap: 16px; 
+            gap: 18px; 
             position: relative; 
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--cy), var(--am));
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
         }
 
         .card:hover { 
             border-color: var(--cy); 
-            transform: translateY(-6px); 
+            transform: translateY(-8px); 
             box-shadow: var(--shadow-neon); 
             background: var(--panel-hover);
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 12px;
+        .card:hover::before {
+            opacity: 1;
         }
 
-        .card h3 { 
-            font-size: 18px; 
-            color: var(--tx); 
-            font-weight: 700;
-            line-height: 1.3;
+        /* Encabezado con badge y módulo */
+        .card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-header-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .module-id {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--am);
+            background: rgba(255, 209, 102, 0.12);
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 209, 102, 0.25);
         }
 
         .badge-doc { 
@@ -204,29 +233,43 @@
             font-weight: 600; 
             background: rgba(255, 94, 199, 0.12); 
             border: 1px solid rgba(255, 94, 199, 0.3); 
-            border-radius: 8px; 
-            padding: 4px 10px; 
-            white-space: nowrap;
+            border-radius: 20px; 
+            padding: 4px 12px; 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card h3 { 
+            font-size: 19px; 
+            color: var(--tx); 
+            font-weight: 800;
+            line-height: 1.35;
         }
 
         .card p.desc { 
             font-size: 14px; 
             color: var(--mut); 
-            line-height: 1.6; 
+            line-height: 1.65; 
         }
 
+        /* Bloque destacado para la investigación */
         .sec-investigacion { 
-            background: rgba(11, 7, 19, 0.6); 
-            border: 1px solid var(--line); 
-            border-radius: 12px; 
-            padding: 14px 16px; 
+            background: rgba(11, 7, 19, 0.7); 
+            border: 1px solid rgba(255, 209, 102, 0.3); 
+            border-radius: 16px; 
+            padding: 16px; 
+            box-shadow: inset 0 0 15px rgba(255, 209, 102, 0.05);
         }
 
         .sec-investigacion h4 { 
             font-size: 13px; 
             color: var(--am); 
-            margin-bottom: 8px; 
-            font-weight: 600;
+            margin-bottom: 10px; 
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .sec-investigacion ul { 
@@ -238,33 +281,42 @@
             gap: 6px;
         }
 
+        /* Sección de herramientas */
         .herramientas-block {
             font-size: 13px;
             color: var(--tx);
-            padding-top: 8px;
-            border-top: 1px dashed var(--line);
+            background: rgba(255, 94, 199, 0.05);
+            border: 1px solid rgba(255, 94, 199, 0.15);
+            border-radius: 12px;
+            padding: 12px 14px;
         }
 
         .herramientas-block b {
             color: var(--gr);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
         }
 
+        /* Etiquetas inferiores */
         .tags { 
             display: flex; 
             flex-wrap: wrap; 
             gap: 8px; 
             margin-top: auto; 
-            padding-top: 12px; 
+            padding-top: 10px; 
         }
 
         .tag { 
             font-size: 11px; 
-            background: rgba(255, 94, 199, 0.1); 
+            background: rgba(255, 94, 199, 0.12); 
             border: 1px solid rgba(255, 94, 199, 0.25); 
             color: var(--cy); 
             padding: 4px 12px; 
             border-radius: 20px; 
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Footer */
@@ -489,9 +541,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         contenedor.innerHTML = lista.map(m => `
             <article class="card">
-                <div class="card-header">
+                <div class="card-top">
+                    <div class="card-header-badge">
+                        <span class="module-id">MóDULO ${m.id}</span>
+                        <span class="badge-doc">👨‍🏫 ${m.docente}</span>
+                    </div>
                     <h3>${m.titulo}</h3>
-                    <span class="badge-doc">👨‍🏫 ${m.docente}</span>
                 </div>
                 
                 <p class="desc">${m.desc}</p>
@@ -506,7 +561,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 ` : ''}
 
                 <div class="herramientas-block">
-                    <b>Herramientas:</b> ${m.herramientas.join(', ')}
+                    <b>Herramientas Utilizadas</b>
+                    ${m.herramientas.join(' • ')}
                 </div>
                 
                 <div class="tags">
@@ -522,7 +578,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Eventos para los botones de filtro
     botonesFiltro.forEach(boton => {
         boton.addEventListener("click", () => {
-            // Cambiar clase activa entre botones
             botonesFiltro.forEach(b => b.classList.remove("activo"));
             boton.classList.add("activo");
 
