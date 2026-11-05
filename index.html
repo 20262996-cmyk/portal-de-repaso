@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Repaso · 3.º DS «B» HUB</title>
-    <!-- Fuentes: Manuscrita grande para el título principal + fuente moderna para el cuerpo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,14 +18,13 @@
             --line-light: #6a2b88;
             --tx: #fdf5ff;
             --mut: #ce9ee0;
-            --cy: #ff5ec7;              /* Rosado Neón */
-            --mg: #f046d2;              /* Magenta */
-            --am: #ffd166;              /* Dorado brillante */
-            --gr: #ff9ee2;              /* Rosa pastel */
+            --cy: #ff5ec7;
+            --mg: #f046d2;
+            --am: #ffd166;
+            --gr: #ff9ee2;
             --shadow-neon: 0 14px 40px rgba(255, 94, 199, 0.35);
         }
 
-        /* Variables para Modo Claro */
         body.light-mode {
             --bg: #f5edfa;
             --panel: #ffffff;
@@ -61,9 +59,7 @@
         /* Navbar superior */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 70px;
             background: rgba(9, 5, 17, 0.88);
             backdrop-filter: blur(12px);
@@ -71,12 +67,9 @@
             z-index: 100;
             display: flex;
             align-items: center;
-            transition: background 0.3s ease;
         }
 
-        body.light-mode .navbar {
-            background: rgba(245, 237, 250, 0.9);
-        }
+        body.light-mode .navbar { background: rgba(245, 237, 250, 0.9); }
 
         .nav-container {
             display: flex;
@@ -102,7 +95,6 @@
             padding: 3px 10px;
             border-radius: 20px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .btn-theme-toggle {
@@ -114,23 +106,10 @@
             cursor: pointer;
             font-size: 13px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.25s ease;
         }
 
-        .btn-theme-toggle:hover {
-            border-color: var(--cy);
-            transform: scale(1.03);
-        }
-
-        /* --- HERO SECCIÓN GIGANTE --- */
-        .hero-section {
-            padding: 40px 20px 20px;
-            text-align: center;
-            position: relative;
-        }
+        /* Hero */
+        .hero-section { padding: 40px 20px 20px; text-align: center; }
 
         .hero-title-big {
             font-family: 'Dancing Script', cursive;
@@ -140,8 +119,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 0 25px rgba(255, 94, 199, 0.3));
         }
 
         .sub-brand {
@@ -150,18 +127,11 @@
             color: var(--am);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
-            display: block;
         }
 
-        .lead { 
-            color: var(--mut); 
-            font-size: 17px; 
-            max-width: 700px; 
-            margin: 0 auto; 
-        }
+        .lead { color: var(--mut); font-size: 17px; max-width: 700px; margin: 0 auto; }
 
-        /* Barra de progreso guardado en el navegador */
+        /* Barra de Progreso */
         .progress-box {
             background: var(--panel-card);
             border: 1px solid var(--line);
@@ -172,47 +142,79 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            box-shadow: inset 0 0 15px rgba(255, 94, 199, 0.05);
         }
 
-        .progress-info {
+        .progress-info { display: flex; justify-content: space-between; font-size: 13.5px; font-weight: 700; }
+        .progress-bar-bg { background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 10px; overflow: hidden; border: 1px solid var(--line); }
+        .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--cy), var(--am)); transition: width 0.4s ease; }
+
+        /* SECCIÓN EPICA: INSIGNIAS Y LOGROS */
+        .badges-container {
             display: flex;
-            justify-content: space-between;
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--tx);
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
-        .progress-bar-bg {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            height: 10px;
-            overflow: hidden;
+        .badge-item {
+            background: var(--panel-card);
             border: 1px solid var(--line);
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--cy), var(--am));
-            border-radius: 10px;
-            transition: width 0.4s ease;
-        }
-
-        /* Controles de Filtros y Buscador en Tiempo Real */
-        .controls-section { 
-            margin: 30px 0 45px; 
-            display: flex; 
-            flex-direction: column;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 8px;
+            opacity: 0.4;
+            transition: all 0.3s;
         }
 
-        .search-wrapper {
-            width: 100%;
-            max-width: 650px;
+        .badge-item.unlocked {
+            opacity: 1;
+            border-color: var(--am);
+            box-shadow: 0 0 15px rgba(255, 209, 102, 0.3);
+            color: var(--am);
         }
 
+        /* SECCIÓN EPICA: NUBE DE TECNOLOGÍAS */
+        .tech-cloud-box {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .tech-cloud-title { font-size: 14px; font-weight: 700; color: var(--am); margin-bottom: 12px; text-transform: uppercase; }
+
+        .tech-tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tech-btn {
+            background: var(--panel-card);
+            border: 1px solid var(--line);
+            color: var(--mut);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .tech-btn:hover, .tech-btn.active {
+            background: var(--cy);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 0 12px var(--cy);
+        }
+
+        /* Buscador */
+        .controls-section { margin: 20px 0 35px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+        .search-wrapper { width: 100%; max-width: 650px; position: relative; }
+        
         #buscador {
             width: 100%;
             padding: 14px 22px;
@@ -222,313 +224,103 @@
             color: var(--tx);
             font-size: 15px;
             outline: none;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
-        #buscador:focus {
-            border-color: var(--cy);
-            box-shadow: 0 0 20px rgba(255, 94, 199, 0.3);
+        .shortcut-hint {
+            position: absolute;
+            right: 15px; top: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3px 8px; border-radius: 6px;
+            font-size: 11px; color: var(--mut);
+            pointer-events: none;
         }
 
-        .filtros { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 12px; 
-            justify-content: center; 
-        }
+        .filtros { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .btn-filtro { font-size: 13.5px; background: var(--panel); border: 1px solid var(--line); color: var(--mut); padding: 10px 24px; border-radius: 30px; cursor: pointer; }
+        .btn-filtro.activo { color: #fff; background: linear-gradient(135deg, var(--cy), var(--mg)); border-color: transparent; font-weight: 600; }
 
-        .btn-filtro { 
-            font-size: 13.5px; 
-            background: var(--panel); 
-            border: 1px solid var(--line); 
-            color: var(--mut); 
-            padding: 10px 24px; 
-            border-radius: 30px; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
+        /* Grid */
+        .section-title { font-size: 24px; margin-bottom: 30px; color: var(--tx); display: flex; align-items: center; gap: 12px; font-weight: 800; }
+        .section-title::before { content: ''; width: 6px; height: 24px; background: var(--cy); border-radius: 4px; }
+        .grid-modulos { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; }
 
-        .btn-filtro:hover, .btn-filtro.activo { 
-            color: #fff; 
-            background: linear-gradient(135deg, var(--cy), var(--mg)); 
-            border-color: transparent; 
-            font-weight: 600; 
-            box-shadow: 0 4px 20px rgba(255, 94, 199, 0.5); 
-            transform: scale(1.03);
-        }
+        .card { background: var(--panel-card); border: 1px solid var(--line); border-radius: 26px; padding: 30px; display: flex; flex-direction: column; gap: 20px; }
+        .card-head-box { display: flex; justify-content: space-between; align-items: center; }
+        .badge-mod-id { background: rgba(255, 94, 199, 0.2); border: 1px solid var(--cy); color: var(--tx); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 12px; }
+        .badge-doc { font-size: 12.5px; color: var(--cy); font-weight: 600; background: rgba(255, 94, 199, 0.12); border: 1px solid rgba(255, 94, 199, 0.3); border-radius: 20px; padding: 4px 14px; }
+        .card h3 { font-size: 20px; color: var(--tx); font-weight: 800; }
+        .card p.desc { font-size: 14.5px; color: var(--mut); }
+        .check-repaso { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--am); background: rgba(255, 209, 102, 0.1); border: 1px solid rgba(255, 209, 102, 0.25); padding: 8px 14px; border-radius: 12px; cursor: pointer; }
 
-        /* Layout Grid de Tarjetas */
-        .section-title { 
-            font-size: 24px; 
-            margin-bottom: 30px; 
-            color: var(--tx); 
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 800;
-        }
+        .sec-investigacion { background: rgba(9, 5, 17, 0.4); border: 1px solid rgba(255, 209, 102, 0.35); border-radius: 18px; padding: 18px; }
+        .sec-investigacion h4 { font-size: 13.5px; color: var(--am); margin-bottom: 10px; }
+        .sec-investigacion ul { padding-left: 18px; font-size: 13px; color: var(--mut); display: flex; flex-direction: column; gap: 6px; }
+        .herramientas-block { font-size: 13px; color: var(--tx); background: rgba(255, 94, 199, 0.06); border: 1px solid rgba(255, 94, 199, 0.2); border-radius: 14px; padding: 12px 16px; }
+        .herramientas-block b { color: var(--gr); display: block; margin-bottom: 4px; font-size: 11px; text-transform: uppercase; }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+        .tag { font-size: 11px; background: rgba(255, 94, 199, 0.12); border: 1px solid rgba(255, 94, 199, 0.25); color: var(--cy); padding: 5px 14px; border-radius: 20px; font-weight: 600; }
 
-        .section-title::before {
-            content: '';
-            width: 6px;
-            height: 24px;
-            background: var(--cy);
-            border-radius: 4px;
-            box-shadow: 0 0 10px var(--cy);
-        }
-
-        .grid-modulos { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); 
-            gap: 30px; 
-        }
-
-        /* --- TARJETAS INTERACTIVAS --- */
-        .card { 
-            background: var(--panel-card); 
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--line); 
-            border-radius: 26px; 
-            padding: 30px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px; 
-            position: relative; 
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-
-        .card:hover { 
-            border-color: var(--cy); 
-            transform: translateY(-8px) scale(1.01); 
-            box-shadow: var(--shadow-neon); 
-            background: var(--panel-hover);
-        }
-
-        .card-head-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .badge-mod-id {
-            background: linear-gradient(135deg, rgba(255, 94, 199, 0.2), rgba(255, 209, 102, 0.2));
-            border: 1px solid var(--cy);
-            color: var(--tx);
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 12px;
-            letter-spacing: 1px;
-        }
-
-        .badge-doc { 
-            font-size: 12.5px; 
-            color: var(--cy); 
-            font-weight: 600; 
-            background: rgba(255, 94, 199, 0.12); 
-            border: 1px solid rgba(255, 94, 199, 0.3); 
-            border-radius: 20px; 
-            padding: 4px 14px; 
-        }
-
-        .card h3 { 
-            font-size: 20px; 
-            color: var(--tx); 
-            font-weight: 800;
-            line-height: 1.35;
-        }
-
-        .card p.desc { 
-            font-size: 14.5px; 
-            color: var(--mut); 
-            line-height: 1.65; 
-        }
-
-        .check-repaso {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--am);
-            background: rgba(255, 209, 102, 0.1);
-            border: 1px solid rgba(255, 209, 102, 0.25);
-            padding: 8px 14px;
-            border-radius: 12px;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.2s;
-        }
-
-        .check-repaso input {
-            accent-color: var(--cy);
-            width: 16px;
-            height: 16px;
+        /* SECCIÓN EPICA: FLASHCARDS DE REPASO */
+        .flashcards-section { margin-top: 60px; }
+        .flashcard-box {
+            perspective: 1000px;
+            max-width: 500px;
+            margin: 20px auto 0;
+            height: 220px;
             cursor: pointer;
         }
 
-        .sec-investigacion { 
-            background: rgba(9, 5, 17, 0.4); 
-            border: 1px solid rgba(255, 209, 102, 0.35); 
-            border-radius: 18px; 
-            padding: 18px; 
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
-        body.light-mode .sec-investigacion {
-            background: rgba(255, 255, 255, 0.6);
-        }
+        .flashcard-box.flipped .flashcard-inner { transform: rotateY(180deg); }
 
-        .sec-investigacion h4 { 
-            font-size: 13.5px; 
-            color: var(--am); 
-            margin-bottom: 10px; 
-            font-weight: 700;
-        }
-
-        .sec-investigacion ul { 
-            padding-left: 18px; 
-            font-size: 13px; 
-            color: var(--mut); 
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
-        }
-
-        .herramientas-block {
-            font-size: 13px;
-            color: var(--tx);
-            background: rgba(255, 94, 199, 0.06);
-            border: 1px solid rgba(255, 94, 199, 0.2);
-            border-radius: 14px;
-            padding: 12px 16px;
-        }
-
-        .herramientas-block b {
-            color: var(--gr);
-            display: block;
-            margin-bottom: 4px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        .tags { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 8px; 
-            margin-top: auto; 
-            padding-top: 10px; 
-        }
-
-        .tag { 
-            font-size: 11px; 
-            background: rgba(255, 94, 199, 0.12); 
-            border: 1px solid rgba(255, 94, 199, 0.25); 
-            color: var(--cy); 
-            padding: 5px 14px; 
-            border-radius: 20px; 
-            font-weight: 600;
-        }
-
-        /* --- QUIZ INTERACTIVO CON RETROALIMENTACIÓN INMEDIATA --- */
-        .quiz-section {
-            margin-top: 70px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--cy);
             background: var(--panel-card);
-            border: 1px solid var(--line-light);
-            border-radius: 26px;
-            padding: 35px;
             box-shadow: var(--shadow-neon);
         }
 
-        .quiz-title {
-            font-size: 22px;
-            color: var(--cy);
-            font-weight: 800;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .flashcard-back { transform: rotateY(180deg); border-color: var(--am); }
 
-        .quiz-card {
-            background: rgba(9, 5, 17, 0.4);
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 16px;
-        }
+        /* SECCIÓN EPICA: LÍNEA DE TIEMPO ANIMADA */
+        .timeline-section { margin-top: 70px; }
+        .timeline-container { position: relative; padding-left: 30px; border-left: 2px dashed var(--cy); margin-top: 20px; }
+        .timeline-item { position: relative; margin-bottom: 25px; }
+        .timeline-dot { position: absolute; left: -37px; top: 4px; width: 12px; height: 12px; background: var(--am); border-radius: 50%; box-shadow: 0 0 10px var(--am); }
+        .timeline-date { font-size: 12px; font-weight: 800; color: var(--cy); }
 
-        body.light-mode .quiz-card {
-            background: rgba(255, 255, 255, 0.5);
-        }
+        /* Quiz Section */
+        .quiz-section { margin-top: 70px; background: var(--panel-card); border: 1px solid var(--line-light); border-radius: 26px; padding: 35px; }
+        .quiz-title { font-size: 22px; color: var(--cy); font-weight: 800; margin-bottom: 20px; }
+        .quiz-card { background: rgba(9, 5, 17, 0.4); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin-bottom: 16px; }
+        .quiz-pregunta { font-size: 15px; font-weight: 700; color: var(--tx); margin-bottom: 12px; }
+        .quiz-opciones { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-btn { text-align: left; background: var(--panel); border: 1px solid var(--line); color: var(--tx); padding: 10px 16px; border-radius: 12px; cursor: pointer; }
+        .quiz-btn.correcto { background: rgba(46, 204, 113, 0.2) !important; border-color: #2ecc71 !important; color: #2ecc71 !important; }
+        .quiz-btn.incorrecto { background: rgba(231, 76, 60, 0.2) !important; border-color: #e74c3c !important; color: #e74c3c !important; }
 
-        .quiz-pregunta {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--tx);
-            margin-bottom: 12px;
-        }
-
-        .quiz-opciones {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .quiz-btn {
-            text-align: left;
-            background: var(--panel);
-            border: 1px solid var(--line);
-            color: var(--tx);
-            padding: 10px 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 13.5px;
-            transition: all 0.2s ease;
-        }
-
-        .quiz-btn:hover {
-            border-color: var(--cy);
-            background: var(--panel-hover);
-        }
-
-        .quiz-btn.correcto {
-            background: rgba(46, 204, 113, 0.2) !important;
-            border-color: #2ecc71 !important;
-            color: #2ecc71 !important;
-            font-weight: bold;
-        }
-
-        .quiz-btn.incorrecto {
-            background: rgba(231, 76, 60, 0.2) !important;
-            border-color: #e74c3c !important;
-            color: #e74c3c !important;
-        }
-
-        .quiz-feedback {
-            margin-top: 8px;
-            font-size: 12.5px;
-            font-weight: 600;
-            display: none;
-        }
-
-        /* Footer */
-        footer { 
-            margin-top: 90px; 
-            text-align: center; 
-            color: var(--mut); 
-            font-size: 14px; 
-            border-top: 1px solid var(--line); 
-            padding-top: 35px; 
-        }
-
+        footer { margin-top: 90px; text-align: center; color: var(--mut); font-size: 14px; border-top: 1px solid var(--line); padding-top: 35px; }
         footer b { color: var(--cy); }
     </style>
 </head>
 <body>
 
-    <!-- Navbar con botón para alternar Modo Claro/Oscuro -->
     <nav class="navbar">
         <div class="wrap nav-container">
             <div class="brand-logo">
@@ -541,13 +333,12 @@
         </div>
     </nav>
 
-    <!-- Header Principal -->
     <header class="wrap hero-section">
         <span class="sub-brand">Instituto Nacional Cantón Lourdes</span>
         <h1 class="hero-title-big">Portal de Repaso</h1>
         <p class="lead">Resumen integral de módulos, proyectos, investigación de soporte y herramientas del año.</p>
 
-        <!-- Barra de Progreso guardada localmente -->
+        <!-- Barra de Progreso -->
         <div class="progress-box">
             <div class="progress-info">
                 <span>📈 Tu Progreso de Repaso:</span>
@@ -557,13 +348,27 @@
                 <div class="progress-bar-fill" id="progressBarFill"></div>
             </div>
         </div>
+
+        <!-- LOGROS E INSIGNIAS (Nivel Épico) -->
+        <div class="badges-container">
+            <div class="badge-item" id="badge1">🌱 Novato del Software (1+)</div>
+            <div class="badge-item" id="badge2">⚡ Desarrollador Pro (5+)</div>
+            <div class="badge-item" id="badge3">🏆 Maestro Fullstack (9/9)</div>
+        </div>
     </header>
 
     <main class="wrap">
-        <!-- Buscador y Filtros -->
+        <!-- NUBE DE TECNOLOGÍAS CLICKEABLE (Nivel Épico) -->
+        <div class="tech-cloud-box">
+            <div class="tech-cloud-title">⚡ Filtrar por Tecnología:</div>
+            <div class="tech-tags-cloud" id="techCloudContainer"></div>
+        </div>
+
+        <!-- Buscador con Atajo Ctrl+K -->
         <section class="controls-section">
             <div class="search-wrapper">
-                <input type="text" id="buscador" placeholder="🔎 Busca por módulo, tema (ej: ITIL, Python, SLA) o herramienta en tiempo real...">
+                <input type="text" id="buscador" placeholder="🔎 Busca por módulo, tema (ej: ITIL, Python, SLA)...">
+                <span class="shortcut-hint">Ctrl + K</span>
             </div>
             <div class="filtros">
                 <button class="btn-filtro activo" data-filtro="todos">Todos los Módulos</button>
@@ -573,10 +378,53 @@
             </div>
         </section>
 
-        <!-- Contenedor Dinámico de Módulos -->
+        <!-- Módulos Grid -->
         <section>
             <h2 class="section-title">Módulos del Año</h2>
             <div id="contenedor-modulos" class="grid-modulos"></div>
+        </section>
+
+        <!-- FLASHCARDS DE REPASO (Nivel Épico) -->
+        <section class="flashcards-section">
+            <h2 class="section-title">🎴 Flashcard Interactiva de Repaso</h2>
+            <p style="text-align: center; color: var(--mut); font-size: 13px;">Haz clic en la tarjeta para girarla y revelar la respuesta.</p>
+            <div class="flashcard-box" id="flashcardBox">
+                <div class="flashcard-inner">
+                    <div class="flashcard-front">
+                        <span style="font-size: 11px; color: var(--cy); font-weight: 800;">PREGUNTA FLASH</span>
+                        <h4 style="margin-top: 10px; font-size: 17px;" id="fcQuestion">¿Qué rige la norma ISO 27001 vista en Módulo 3.2?</h4>
+                    </div>
+                    <div class="flashcard-back">
+                        <span style="font-size: 11px; color: var(--am); font-weight: 800;">RESPUESTA</span>
+                        <h4 style="margin-top: 10px; font-size: 16px;" id="fcAnswer">Garantiza los estándares del Sistema de Gestión de Seguridad de la Información (SGSI).</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LÍNEA DE TIEMPO ANIMADA DEL AÑO (Nivel Épico) -->
+        <section class="timeline-section">
+            <h2 class="section-title">📅 Línea de Tiempo del Año Escolar</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">FASE INICIAL</span>
+                    <h4>Módulo 3.0 & Módulo 3.1</h4>
+                    <p style="font-size: 13px; color: var(--mut);">Inducción a portafolios, POO, Herencia y ASP Razor.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">FASE INTERMEDIA</span>
+                    <h4>Módulo 3.2, 3.3 & Módulo 2</h4>
+                    <p style="font-size: 13px; color: var(--mut);">Mantenimiento ITIL 4, Bases de Datos en SQL Server y Desarrollo Móvil .NET MAUI.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <span class="timeline-date">FASE FINAL DE INTEGRACIÓN</span>
+                    <h4>Módulo 3.4, 3.8 & Cooperativa</h4>
+                    <p style="font-size: 13px; color: var(--mut);">Documentación con Python/Odoo, PrestaShop E-Commerce y Proyectos en Asociatividad.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Quiz Interactivo -->
@@ -586,7 +434,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="wrap">
             <p><b>Creado por:</b> Daniela Colocho · Instituto Nacional Cantón Lourdes (INDEL)</p>
@@ -748,76 +595,48 @@ document.addEventListener("DOMContentLoaded", () => {
     const progressBarFill = document.getElementById("progressBarFill");
     const progressText = document.getElementById("progressText");
     const quizContainer = document.getElementById("quizContainer");
+    const techCloudContainer = document.getElementById("techCloudContainer");
+    const flashcardBox = document.getElementById("flashcardBox");
 
-    // Fondo de partículas interactivo
-    const canvas = document.createElement('canvas');
-    canvas.id = 'bg-canvas';
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    canvas.style.zIndex = '-1';
-    canvas.style.pointerEvents = 'none';
-    document.body.prepend(canvas);
+    let techFiltroSeleccionado = "";
 
-    const ctx = canvas.getContext('2d');
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+    // 1. ATAJO DE TECLADO (Ctrl + K para buscar)
+    document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+            e.preventDefault();
+            buscador.focus();
+        }
     });
 
-    const particles = Array.from({ length: 40 }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 1.5 + 0.8,
-        alpha: Math.random() * 0.4 + 0.2
-    }));
+    // 2. FLASHCARD INTERACTIVA (Giro)
+    flashcardBox.addEventListener("click", () => {
+        flashcardBox.classList.toggle("flipped");
+    });
 
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = document.body.classList.contains('light-mode') ? '#f5edfa' : '#090511';
-        ctx.fillRect(0, 0, width, height);
+    // 3. NUBE DE TECNOLOGÍAS DINÁMICA
+    const conjuntoTechs = new Set();
+    modulosData.forEach(m => m.herramientas.forEach(h => conjuntoTechs.add(h)));
+    
+    techCloudContainer.innerHTML = Array.from(conjuntoTechs).map(t => `
+        <button class="tech-btn" data-tech="${t}">${t}</button>
+    `).join('');
 
-        particles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0) p.x = width;
-            if (p.x > width) p.x = 0;
-            if (p.y < 0) p.y = height;
-            if (p.y > height) p.y = 0;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 94, 199, ${p.alpha})`;
-            ctx.fill();
-        });
-
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 110) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = `rgba(255, 94, 199, ${0.1 * (1 - dist / 110)})`;
-                    ctx.lineWidth = 0.6;
-                    ctx.stroke();
-                }
+    document.querySelectorAll(".tech-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const tech = e.target.getAttribute("data-tech");
+            if (techFiltroSeleccionado === tech) {
+                techFiltroSeleccionado = "";
+                e.target.classList.remove("active");
+            } else {
+                document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("active"));
+                techFiltroSeleccionado = tech;
+                e.target.classList.add("active");
             }
-        }
-        requestAnimationFrame(animate);
-    }
-    animate();
+            aplicarFiltros();
+        });
+    });
 
-    // 1. MODO CLARO / OSCURO (localStorage)
+    // 4. MODO CLARO / OSCURO
     const currentTheme = localStorage.getItem("portal_theme");
     if (currentTheme === "light") {
         document.body.classList.add("light-mode");
@@ -833,7 +652,7 @@ document.addEventListener("DOMContentLoaded", () => {
         themeText.textContent = isLight ? "Modo Claro" : "Modo Oscuro";
     });
 
-    // 2. PROGRESO GUARDADO EN LOCALSTORAGE
+    // 5. PROGRESO E INSIGNIAS (Local Storage)
     function obtenerCompletados() {
         return JSON.parse(localStorage.getItem("portal_repaso_progress") || "[]");
     }
@@ -844,13 +663,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const porcentaje = Math.round((completados.length / total) * 100);
         progressBarFill.style.width = `${porcentaje}%`;
         progressText.textContent = `${completados.length} de ${total} completados (${porcentaje}%)`;
+
+        // Desbloquear Insignias
+        const count = completados.length;
+        document.getElementById("badge1").classList.toggle("unlocked", count >= 1);
+        document.getElementById("badge2").classList.toggle("unlocked", count >= 5);
+        document.getElementById("badge3").classList.toggle("unlocked", count === total);
     }
 
     function normalizar(texto) {
         return texto ? texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
     }
 
-    // 3. RENDERIZADO DINÁMICO
+    // 6. RENDER DE MÓDULOS
     function renderizar(lista) {
         if (!contenedor) return;
         if (lista.length === 0) {
@@ -917,7 +742,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizar(modulosData);
     actualizarBarraProgreso();
 
-    // 4. FILTRADO Y BUSCADOR EN TIEMPO REAL
+    // 7. FILTRADO MULTI-VARIABLE
     function aplicarFiltros() {
         const textoBuscador = normalizar(buscador.value.trim());
         const btnActivo = document.querySelector(".btn-filtro.activo");
@@ -938,15 +763,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 coincideFiltro = normalizar(m.docente).includes(normalizar(filtroTipo));
             }
 
-            return coincideTexto && coincideFiltro;
+            let coincideTech = true;
+            if (techFiltroSeleccionado !== "") {
+                coincideTech = m.herramientas.includes(techFiltroSeleccionado);
+            }
+
+            return coincideTexto && coincideFiltro && coincideTech;
         });
 
         renderizar(resultado);
     }
 
-    if (buscador) {
-        buscador.addEventListener("input", aplicarFiltros);
-    }
+    if (buscador) buscador.addEventListener("input", aplicarFiltros);
 
     botonesFiltro.forEach(boton => {
         boton.addEventListener("click", () => {
@@ -956,7 +784,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. RENDER QUIZ INTERACTIVO CON RETROALIMENTACIÓN INMEDIATA
+    // 8. RENDER QUIZ INTERACTIVO
     function renderQuiz() {
         if (!quizContainer) return;
         quizContainer.innerHTML = preguntasQuiz.map((q, qIndex) => `
