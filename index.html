@@ -2,8 +2,16 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#090511">
+    <meta name="description" content="Portal de repaso de 3.º Bachillerato Técnico Vocacional en Desarrollo de Software, sección B.">
+    <meta name="application-name" content="Portal HUB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Portal HUB">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Portal Repaso · 3.º DS «B» HUB</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -317,6 +325,41 @@
 
         footer { margin-top: 90px; text-align: center; color: var(--mut); font-size: 14px; border-top: 1px solid var(--line); padding-top: 35px; }
         footer b { color: var(--cy); }
+
+        .install-banner {
+            position: fixed;
+            right: max(16px, env(safe-area-inset-right));
+            bottom: max(16px, env(safe-area-inset-bottom));
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: min(390px, calc(100vw - 32px));
+            padding: 14px 16px;
+            color: var(--tx);
+            background: var(--panel);
+            border: 1px solid var(--line-light);
+            border-radius: 16px;
+            box-shadow: var(--shadow-neon);
+        }
+        .install-banner[hidden] { display: none; }
+        .install-banner p { flex: 1; margin: 0; font-size: 14px; }
+        .install-banner button {
+            padding: 9px 12px;
+            color: #090511;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            background: var(--cy);
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .install-banner .install-dismiss {
+            padding: 4px 8px;
+            color: var(--tx);
+            background: transparent;
+        }
     </style>
 </head>
 <body>
@@ -440,6 +483,12 @@
             <p style="font-size: 12px; margin-top: 6px; color: var(--mut);">3.º Bachillerato Técnico Vocacional en Desarrollo de Software «B»</p>
         </div>
     </footer>
+
+    <aside class="install-banner" id="installBanner" aria-label="Instalar Portal HUB" hidden>
+        <p>Instala Portal HUB para acceder más rápido, incluso sin conexión.</p>
+        <button id="installButton" type="button">Instalar</button>
+        <button class="install-dismiss" id="dismissInstallButton" type="button" aria-label="Cerrar aviso de instalación">×</button>
+    </aside>
 
     <script>
     const modulosData = [
@@ -826,6 +875,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderQuiz();
 });
+    </script>
+    <script>
+        (() => {
+            const installBanner = document.getElementById("installBanner");
+            const installButton = document.getElementById("installButton");
+            const dismissInstallButton = document.getElementById("dismissInstallButton");
+            let installPromptEvent;
+
+            if ("serviceWorker" in navigator && window.isSecureContext) {
+                navigator.serviceWorker.register("./sw.js")
+                    .catch(error => console.error("No se pudo registrar el Service Worker:", error));
+            }
+
+            window.addEventListener("beforeinstallprompt", event => {
+                event.preventDefault();
+                installPromptEvent = event;
+                installBanner.hidden = false;
+            });
+
+            installButton.addEventListener("click", async () => {
+                if (!installPromptEvent) return;
+
+                installPromptEvent.prompt();
+                await installPromptEvent.userChoice;
+                installPromptEvent = null;
+                installBanner.hidden = true;
+            });
+
+            dismissInstallButton.addEventListener("click", () => {
+                installBanner.hidden = true;
+            });
+
+            window.addEventListener("appinstalled", () => {
+                installPromptEvent = null;
+                installBanner.hidden = true;
+            });
+        })();
     </script>
 </body>
 </html>
